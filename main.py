@@ -1,4 +1,7 @@
 from random_agent import RandomAgent
+from template_alphabeta import AlphaBetaAgent
+from template_uct import UCTAgent
+from template_contest import AI
 from shobu import ShobuAction, ShobuState, ShobuGame
 
 from logs import *
@@ -14,6 +17,12 @@ def get_agents(args, display):
             return HumanAgent(player)
         elif agent_name == "random":
             return RandomAgent(player, ShobuGame())
+        elif agent_name == "alphabeta":
+            return AlphaBetaAgent(player, ShobuGame())
+        elif agent_name == "mcts":
+            return UCTAgent(player, ShobuGame())
+        elif agent_name == "agent":
+            return AI(player, ShobuGame())
         else:
             raise Exception(f"Invalid player: {agent_name}")
     
@@ -120,8 +129,8 @@ def replay_game(actions, delay_time=0.0, display=True, start_turn=0):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Shobu game')
-    parser.add_argument('-w', '--white', type=str, default="random", help='White player ["random | human | ai"]')
-    parser.add_argument('-b', '--black', type=str, default="random", help='Black player ["random | human | ai"]')
+    parser.add_argument('-w', '--white', type=str, default="random", help='White player ["random | human | alphabeta | mcts | agent"]')
+    parser.add_argument('-b', '--black', type=str, default="random", help='Black player ["random | human | alphabeta | mcts | agent"]')
     parser.add_argument('-t', '--time', type=int, default=600, help='Time per game for each player (in seconds)')
     parser.add_argument('-d', '--display', action='store_true', help='Display game')
     parser.add_argument('-l', '--logs', type=str, default=None, help='path to log file to record the game')
