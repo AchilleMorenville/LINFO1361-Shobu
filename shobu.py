@@ -1,4 +1,4 @@
-from typing import NamedTuple
+from typing import NamedTuple, List, Set
 
 class ShobuAction(NamedTuple):
     """Represents an action in the Shobu game, encompassing both passive and active moves.
@@ -74,8 +74,8 @@ class ShobuState(NamedTuple):
     """
     to_move: int
     utility: int
-    board: list[list[set[int], set[int]]]
-    actions: list[ShobuAction]
+    board: List[List[Set[int]]]
+    actions: List[ShobuAction]
     count_boring_actions: int
 
 class ShobuGame:

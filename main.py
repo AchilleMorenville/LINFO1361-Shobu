@@ -22,30 +22,6 @@ def get_agents(args, display):
     
     return get_agent(0, args.white), get_agent(1, args.black)
 
-    # if args.white == "random":
-    #     agent_white = RandomAgent(Player.WHITE)
-    # elif args.white == "human":
-    #     agent_white = HumanAgent(Player.WHITE)
-    # elif args.white == "ai":
-    #     agent_white = Agent(Player.WHITE)
-    # elif args.white == "minimax":
-    #     agent_white = Minimax(Player.WHITE)
-    # else:
-    #     raise Exception(f"Invalid player: {args.white}")
-
-    # if args.black == "random":
-    #     agent_black = RandomAgent(Player.BLACK)
-    # elif args.black == "human":
-    #     agent_black = HumanAgent(Player.BLACK)
-    # elif args.black == "ai":
-    #     agent_black = Agent(Player.BLACK)
-    # elif args.black == "minimax":
-    #     agent_black = Minimax(Player.BLACK)
-    # else:
-    #     raise Exception(f"Invalid player: {args.black}")
-    
-    # return agent_white, agent_black
-
 def main(agent_white, agent_black, display=False, log_file=None, play_time=600):
 
     game = ShobuGame()

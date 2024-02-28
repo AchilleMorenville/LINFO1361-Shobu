@@ -180,7 +180,6 @@ def get_human_move(state):
                 le = 1
             elif abs(dir) in [2, 6, 8, 10]:
                 dir //= 2
-                print("found")
                 le = 2
             else:
                 continue
