@@ -21,4 +21,4 @@ class AI(Agent):
         Returns:
             ShobuAction: The chosen action.
         """
-        ..
+        ...
