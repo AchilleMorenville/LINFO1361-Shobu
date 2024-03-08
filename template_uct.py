@@ -72,6 +72,7 @@ class UCTAgent(Agent):
             ShobuAction: The action leading to the best-perceived outcome based on UCT algorithm.
         """
         root = Node(None, state)
+        root.children = { Node(root, self.game.result(root.state, action)): action for action in self.game.actions(root.state) }
         for _ in range(self.iteration):
             leaf = self.select(root)
             child = self.expand(leaf)
@@ -96,9 +97,8 @@ class UCTAgent(Agent):
     def expand(self, node):
         """Expands a node by adding a child node to the tree for an unexplored action.
 
-        This function generates all possible actions from the current state represented by the node if they haven't been explored yet. 
-        For each unexplored action, a new child node is created, representing the state resulting from that action. The function then 
-        selects one of these new child nodes and returns it. If the node represents a terminal state it effectively returns the node itself, 
+        If no child has been initialized for this node, the function initializes a child node for each action and store them in the children dictionary.
+        The function then selects one of the unexplored child nodes and returns it. If the node represents a terminal state it effectively returns the node itself, 
         indicating that the node cannot be expanded further.
 
         Args:
@@ -116,7 +116,7 @@ class UCTAgent(Agent):
             state (ShobuState): The state to simulate from.
 
         Returns:
-            float: The utility value of the terminal state for the player to move.
+            float: The utility value of the terminal state for the opponent of the player whose turn it is to play in that state.
         """
         ...
 
@@ -133,7 +133,7 @@ class UCTAgent(Agent):
         """Calculates the UCB1 value for a given node.
 
         Args:
-            node (Node): The node to calculate the UCB1 value for.
+            node (Node): The node to calculate the UCB1 value for. Returns infinity if the node has not been visited yet.
 
         Returns:
             float: The UCB1 value.
