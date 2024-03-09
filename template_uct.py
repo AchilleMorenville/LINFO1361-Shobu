@@ -118,12 +118,17 @@ class UCTAgent(Agent):
             state (ShobuState): The state to simulate from.
 
         Returns:
-            float: The utility value of the terminal state for the opponent of the player whose turn it is to play in that state.
+            float: The utility value of the resulting terminal state in the point of view of the opponent in the original state.
         """
         ...
 
     def back_propagate(self, result, node):
         """Propagates the result of a simulation back up the tree, updating node statistics.
+
+        This method is responsible for updating the statistics for each node according to the result of the simulation. 
+        It recursively updates the U (utility) and N (number of visits) values for each node on the path from the given 
+        node to the root. The utility of a node is only updated if it is a node that must contain the win rate of the 
+        player who won the simulation, otherwise the utility is not modified.
 
         Args:
             result (float): The result of the simulation.
