@@ -107,7 +107,7 @@ class UCTAgent(Agent):
             node (Node): The node to expand. This node represents the current state from which we want to explore possible actions.
 
         Returns:
-            Node: The newly created child node representing the state after an unexplored action. If the node is at a terminal state, the node itself is returned.
+            Node: The child node selected. If the node is at a terminal state, the node itself is returned.
         """
         ...
 
